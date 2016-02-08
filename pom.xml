@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.scrumtrek</groupId>
-	<artifactId>RefactoringDemoTeam05</artifactId>
+	<artifactId>team05</artifactId>
 
 
 	<dependencies>
