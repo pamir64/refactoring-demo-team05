@@ -2,18 +2,18 @@ package com.scrumtrek.simplestore;
 
 public class Movie {
 	private String m_Title;
-	private PriceCodes m_PriceCode;
+	private PriceCode m_PriceCode;
 
-	public Movie(String title, PriceCodes priceCode) {
+	public Movie(String title, PriceCode priceCode) {
 		m_Title = title;
 		m_PriceCode = priceCode;
 	}
 
-	public PriceCodes getPriceCode()	{
+	public PriceCode getPriceCode()	{
 		return m_PriceCode;
 	}
 	
-	public void setPriceCode(PriceCodes value) {
+	public void setPriceCode(PriceCode value) {
 		m_PriceCode = value;
 	}
 
