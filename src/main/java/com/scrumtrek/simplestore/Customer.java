@@ -29,11 +29,11 @@ public class Customer {
 	public String Statement()
 	{
 		
-		new Reporter(this) {
+		Reporter rep = new Reporter(this) {
 			
 			@Override
 			public void out(String statment) {
-				text= statment;
+				text = statment;
 				System.out.println(statment);
 			}
 		};
