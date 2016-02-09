@@ -31,9 +31,11 @@ public abstract class Reporter {
 	
 	public abstract void out(String statment);
 	
-	Reporter(Customer customer){
+	public Reporter(Customer customer){
 		statment = getReport(customer);
 		out(statment);
 	}
+	
+	private Reporter(){}
 
 }

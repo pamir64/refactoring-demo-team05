@@ -11,7 +11,6 @@ public class NewRelease extends PriceCode{
 
 	@Override
 	public int getBonus(int days) {
-		// TODO Auto-generated method stub
 		return (days > 1)?1:0;
 	}
 

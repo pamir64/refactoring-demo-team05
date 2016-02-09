@@ -29,7 +29,7 @@ public class Customer {
 	public String Statement()
 	{
 		
-		Reporter rep = new Reporter(this) {
+		new Reporter(this) {
 			
 			@Override
 			public void out(String statment) {
