@@ -35,7 +35,5 @@ public abstract class Reporter {
 		statment = getReport(customer);
 		out(statment);
 	}
-	
-	private Reporter(){}
 
 }
