@@ -2,6 +2,9 @@ package com.scrumtrek.simplestore;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+
+import com.scrumtrek.simplestore.price.Xxx;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.scrumtrek.simplestore.price.Childrens;
@@ -160,5 +163,27 @@ public class ReportTest {
                 + "	movie-name	1.5\n"
                 + "Amount owed is 1.5\n"
                 + "You earned 1 frequent renter points.", statement);
+    }
+
+    @Test
+    public void testXxxDaysAmount() {
+        PriceCode xxx = new Xxx();
+        double amount4 = xxx.getAmount(4);
+        Assert.assertEquals(2, amount4, 0.0001);
+        double amount5 = xxx.getAmount(5);
+        Assert.assertEquals(2, amount5, 0.0001);
+        double amount6 = xxx.getAmount(6);
+        Assert.assertEquals(3.6, amount6, 0.0001);
+    }
+
+    @Test
+    public void testXxxDaysBonus() {
+        PriceCode xxx = new Xxx();
+        int bonus4 = xxx.getBonus(4);
+        Assert.assertEquals(0, bonus4);
+        int bonus5 = xxx.getBonus(5);
+        Assert.assertEquals(0, bonus5);
+        int bonus6 = xxx.getBonus(6);
+        Assert.assertEquals(0, bonus6);
     }
 }
