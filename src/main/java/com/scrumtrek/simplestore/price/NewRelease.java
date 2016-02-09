@@ -6,7 +6,7 @@ public class NewRelease extends PriceCode{
 
 	@Override
 	public double getAmount(int days) {
-		return days * 3;
+		return days * 3.0;
 	}
 
 	@Override
