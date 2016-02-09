@@ -1,6 +1,7 @@
 package com.scrumtrek.simplestore.reports;
 
 import com.scrumtrek.simplestore.Customer;
+import com.scrumtrek.simplestore.Movie;
 import com.scrumtrek.simplestore.Rental;
 
 public class PlainReporter implements Reporter {
@@ -21,7 +22,9 @@ public class PlainReporter implements Reporter {
 
 			frequentRenterPoints += each.getBonus();
 			// Show figures for this rental
-			result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
+            for (Movie movie : each.getMovies()) {
+                result += "\t" + movie.getTitle() + "\t" + movie.getPriceCode().getAmount(each.getDaysRented()) + "\n";
+            }
 			totalAmount += thisAmount;
 		}
 

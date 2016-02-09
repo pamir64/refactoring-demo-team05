@@ -78,6 +78,27 @@ public class ReportTest {
     }
 
     @Test
+    public void testWithTwoRegularPrice() throws Exception {
+        String name = "test1";
+        Customer c1 = new Customer(name);
+        Regular reg = new Regular();
+
+        Rental rental = new Rental(new Movie("movie-name", reg), 10);
+        rental.addMovie(new Movie("movie-name2", reg));
+        c1.addRental(rental);
+
+        String statement = new PlainReporter().getReport(c1);
+        assertNotNull(statement);
+
+        assertEquals(
+                "Rental record for test1\n" +
+                "\tmovie-name\t14.0\n" +
+                "\tmovie-name2\t14.0\n" +
+                "Amount owed is 28.0\n" +
+                "You earned 1 frequent renter points.", statement);
+    }
+
+    @Test
     public void testWithRegularPriceDaysRented2() throws Exception {
         String name = "test1";
         Customer c1 = new Customer(name);

@@ -1,13 +1,15 @@
 package com.scrumtrek.simplestore;
 
-import javax.annotation.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rental {
-	private Movie m_Movie;
+	private List<Movie> movies;
 	private int m_DaysRented;
 
 	public Rental(Movie movie, int daysRented) {
-		m_Movie = movie;
+		movies = new ArrayList<Movie>();
+        addMovie(movie);
 		m_DaysRented = daysRented;
 	}
 
@@ -15,16 +17,28 @@ public class Rental {
 		return m_DaysRented;
 	}
 
-	public Movie getMovie() {
-		return m_Movie;
+	public List<Movie> getMovies() {
+		return movies;
 	}
-	
-	public double getAmount(){
-		return m_Movie.getPriceCode().getAmount(m_DaysRented);
-	}
-	
-	public int getBonus() {
-		return m_Movie.getPriceCode().getBonus(m_DaysRented);
+
+    public boolean addMovie(Movie movie) {
+        return movies.add(movie);
+    }
+
+    public double getAmount() {
+        double sum = 0.;
+        for (Movie movie : movies) {
+            sum += movie.getPriceCode().getAmount(m_DaysRented);
+        }
+        return sum;
+    }
+
+    public int getBonus() {
+        int sum = 0;
+        for (Movie movie : movies) {
+            sum += movie.getPriceCode().getBonus(m_DaysRented);
+        }
+        return sum;
 	}
 }
 
