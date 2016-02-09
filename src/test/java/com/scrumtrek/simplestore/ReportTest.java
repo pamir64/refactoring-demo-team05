@@ -4,6 +4,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 import com.scrumtrek.simplestore.price.Xxx;
+import com.scrumtrek.simplestore.reports.HtmlReporter;
+import com.scrumtrek.simplestore.reports.PlainReporter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class ReportTest {
         String name = "empty";
         Customer empty = new Customer(name);
 
-        String statement = empty.Statement();
+        String statement = new PlainReporter().getReport(empty);
         assertNotNull(statement);
 
         assertEquals(
@@ -46,7 +48,7 @@ public class ReportTest {
 		};
         c1.addRental(new Rental(new Movie("movie-name", priceCode), 10));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -65,7 +67,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", reg), 10));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -83,7 +85,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", reg), 2));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -101,7 +103,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", newR), 5));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -119,7 +121,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", newR), 1));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -137,7 +139,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", ch), 15));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -155,7 +157,7 @@ public class ReportTest {
 
         c1.addRental(new Rental(new Movie("movie-name", ch), 3));
 
-        String statement = c1.Statement();
+        String statement = new PlainReporter().getReport(c1);
         assertNotNull(statement);
 
         assertEquals(
@@ -185,5 +187,19 @@ public class ReportTest {
         Assert.assertEquals(0, bonus5);
         int bonus6 = xxx.getBonus(6);
         Assert.assertEquals(0, bonus6);
+    }
+
+    @Test
+    public void htmlReportTest() {
+        String name = "test1";
+        Customer c1 = new Customer(name);
+        Childrens ch = new Childrens();
+
+        c1.addRental(new Rental(new Movie("movie-name", ch), 3));
+        String statement = new HtmlReporter().getReport(c1);
+        Assert.assertEquals("<html><head><title>Rental record for test1</title></head>" +
+                "<body><p>movie-name: 1.5<p>Amount owed is 1.5<br>You earned 1 frequent renter points.</body></html>"
+                , statement
+        );
     }
 }

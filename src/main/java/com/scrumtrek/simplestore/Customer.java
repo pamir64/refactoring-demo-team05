@@ -23,21 +23,5 @@ public class Customer {
 	public void addRental(Rental arg){
 		m_Rentals.add(arg);
 	}
-	
-	private String text;
-
-	public String Statement()
-	{
-		
-		Reporter rep = new Reporter(this) {
-			
-			@Override
-			public void out(String statment) {
-				text = statment;
-				System.out.println(statment);
-			}
-		};
-		return text;
-	}
 }
 
